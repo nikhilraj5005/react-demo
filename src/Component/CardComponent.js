@@ -1,13 +1,15 @@
 import React from "react";
 import "./../App.scss";
+import bonsai from "./../test.jpg";
+import { green } from "@material-ui/core/colors";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 const slides = [
   {
     title: "Machu Picchu",
     subtitle: "Peru",
     description: "Adventure is never far away",
-    image:
-      "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+    image: bonsai,
   },
   {
     title: "Chamonix",
@@ -104,7 +106,6 @@ const slidesReducer = (state, event) => {
 function Slide({ slide, offset }) {
   const active = offset === 0 ? true : null;
   const ref = useTilt(active);
-
   return (
     <div
       ref={ref}
@@ -115,22 +116,36 @@ function Slide({ slide, offset }) {
         "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1,
       }}
     >
-      <div
-        className="slideBackground"
-        style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      />
-      <div
-        className="slideContent"
-        style={{
-          backgroundImage: `url('${slide.image}')`,
-        }}
-      >
-        <div className="slideContentInner">
-          <h2 className="slideTitle">{slide.title}</h2>
-          <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
+      <div className="slideBackground" style={{}} />
+      <div>
+        <div
+          className="slideContent"
+          style={{
+            backgroundImage: `url('${slide.image}')`,
+            borderRadius: "5px",
+          }}
+        >
+          <div className="slideContentInner">
+            <h2 className="slideTitle">{slide.title}</h2>
+            <h3 className="slideSubtitle">{slide.subtitle}</h3>
+            <p className="slideDescription">{slide.description}</p>
+            <div
+              style={{
+                float: "right",
+                marginRight: "15px",
+                marginTop: "135px",
+              }}
+            >
+              <AddCircleIcon style={{ color: green[500], fontSize: 40 }} />
+              <span
+                style={{
+                  borderTopStyle: "outset",
+                }}
+              >
+                Add to cart
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -143,13 +158,13 @@ export default function CardComponent() {
   return (
     <div className="card-data">
       <div className="slides">
-        <button onClick={() => dispatch({ type: "PREV" })}>‹</button>
+        <button onClick={() => dispatch({ type: "NEXT" })}>‹</button>
 
         {[...slides, ...slides, ...slides].map((slide, i) => {
           let offset = slides.length + (state.slideIndex - i);
           return <Slide slide={slide} offset={offset} key={i} />;
         })}
-        <button onClick={() => dispatch({ type: "NEXT" })}>›</button>
+        <button onClick={() => dispatch({ type: "PREV" })}>›</button>
       </div>
     </div>
   );

@@ -6,15 +6,16 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
-
-import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import Input from "@material-ui/core/Input";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import PhoneIcon from "@material-ui/icons/Phone";
 import InputLabel from "@material-ui/core/InputLabel";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import FormControl from "@material-ui/core/FormControl";
+import Container from "@material-ui/core/Container";
 
 const DialogContent = withStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-const LoginComponent = (props) => {
+const SignUpComponent = (props) => {
   const [values, setValues] = React.useState({
     amount: "",
     password: "",
@@ -53,31 +54,52 @@ const LoginComponent = (props) => {
   return (
     <div className="login-modal">
       <Dialog
-        onClose={(open) => props.handleLoginOpen(false)}
+        onClose={(close) => props.handleSignUpOpen(false)}
         maxWidth="lg"
         aria-labelledby="customized-dialog-title"
-        open={(open) => props.handleLoginOpen(true)}
+        open={(close) => props.handleSignUpOpen(true)}
       >
-        <MuiDialogTitle>Please Enter your details to Login</MuiDialogTitle>
+        <MuiDialogTitle>Please Enter your details to sign up</MuiDialogTitle>
         <DialogContent dividers>
           <form noValidate autoComplete="off">
-            <Grid container spacing={1} alignItems="flex-end">
-              <Grid item>
-                <FormControl>
-                  <InputLabel htmlFor="input-with-icon-adornment">
-                    Email
-                  </InputLabel>
-                  <Input
-                    id="input-with-icon-adornment"
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <AccountCircle />
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item>
+            <Container maxWidth="md" fixed="true">
+              <Typography
+                component="div"
+                style={{ height: "75px", width: "300px" }}
+              >
+                <InputLabel htmlFor="input-with-icon-adornment">
+                  Name
+                </InputLabel>
+                <Input
+                  id="name"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                />
+              </Typography>
+
+              <Typography
+                component="div"
+                style={{ height: "75px", width: "300px" }}
+              >
+                <InputLabel htmlFor="input-with-icon-adornment">
+                  Email
+                </InputLabel>
+                <Input
+                  id="email"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AlternateEmailIcon />
+                    </InputAdornment>
+                  }
+                />
+              </Typography>
+              <Typography
+                component="div"
+                style={{ height: "75px", width: "300px" }}
+              >
                 <InputLabel htmlFor="standard-adornment-password">
                   Password
                 </InputLabel>
@@ -102,13 +124,29 @@ const LoginComponent = (props) => {
                     </InputAdornment>
                   }
                 />
-              </Grid>
-            </Grid>
+              </Typography>
+              <Typography
+                component="div"
+                style={{ height: "75px", width: "300px" }}
+              >
+                <InputLabel htmlFor="input-with-icon-adornment">
+                  Mobile No.
+                </InputLabel>
+                <Input
+                  id="mobile"
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <PhoneIcon />
+                    </InputAdornment>
+                  }
+                />
+              </Typography>
+            </Container>
           </form>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" variant="contained">
-            Login
+          <Button color="primary" variant="contained" autoFocus>
+            Sign-Up
           </Button>
         </DialogActions>
       </Dialog>
@@ -116,4 +154,4 @@ const LoginComponent = (props) => {
   );
 };
 
-export default LoginComponent;
+export default SignUpComponent;

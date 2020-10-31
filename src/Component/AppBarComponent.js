@@ -17,6 +17,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import icon from "./../logo.jpg";
 
 import LoginComponent from "./LoginComponent";
+import SignUpComponent from "./SignUpComponent";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -92,13 +93,17 @@ export default function AppBarComponent() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [values, setValues] = React.useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openSignUp, setOpenSignUp] = React.useState(false);
+
+  const handleLoginOpen = () => {
+    setOpenLogin(true);
+  };
+
+  const handleSignUpOpen = () => {
+    setOpenSignUp(true);
+  };
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -127,7 +132,8 @@ export default function AppBarComponent() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfileMenuOpen}>Login</MenuItem>
+      <MenuItem onClick={handleLoginOpen}>Login</MenuItem>
+      <MenuItem onClick={handleSignUpOpen}>Sign-Up</MenuItem>
     </Menu>
   );
 
@@ -185,7 +191,7 @@ export default function AppBarComponent() {
             >
               <MenuIcon />
             </IconButton>
-            <img className="logo" src={icon} />
+            <img className="logo" src={icon} alt="logo" />
             <Typography className={classes.title} variant="h4" noWrap>
               PlantKart
             </Typography>
@@ -244,7 +250,22 @@ export default function AppBarComponent() {
         {renderMobileMenu}
         {renderMenu}
       </div>
-      <LoginComponent />
+      {openLogin && (
+        <LoginComponent
+          handleLoginOpen={(value) => {
+            setOpenLogin(value);
+            handleMenuClose();
+          }}
+        />
+      )}
+      {openSignUp && (
+        <SignUpComponent
+          handleSignUpOpen={(value) => {
+            setOpenSignUp(value);
+            handleMenuClose();
+          }}
+        />
+      )}
     </div>
   );
 }

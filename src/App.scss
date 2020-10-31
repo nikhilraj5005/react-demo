@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 50px;
 }
 
 .slides {
@@ -66,8 +67,8 @@
 }
 
 .slideContent {
-  width: 20vw;
-  height: 25vw;
+  width: 25vw;
+  height: 35vw;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
