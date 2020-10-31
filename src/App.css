@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 40px;
+  border-radius: 25px;
+  margin-right: 5px;
+}
+.MuiToolbar-root {
+  background: linear-gradient(to right, #006825, #a3ffeaad);
+}
+.MuiPopover-paper {
+  margin-top: 40px;
+}
+.makeStyles-search-4 {
+  width: 50% !important;
+}
